@@ -4,11 +4,12 @@ import ToDoSearch from "./components/ToDoSearcch";
 import CreateToDoButton from "./components/CreateToDoButton";
 import ToDoList from "./components/ToDoList";
 import ToDoItem from "./components/ToDoItem";
+import './styles/todocounter.css';
 //import './App.css';
 const todos = [
-  { text: "tarminar este curso", completed: "false" },
-  { text: "terminar la seccion del curso de udemy", completed: "false" },
-  { text: "subir a github ", completed: "false" },
+  { text: "tarminar este curso", completed: true },
+  { text: "terminar la seccion del curso de udemy", completed: false },
+  { text: "subir a github ", completed: false },
 ];
 
 function App(props) {
@@ -18,7 +19,7 @@ function App(props) {
       <ToDoSearch />
       <ToDoList>
         {todos.map((todo) => (
-          <ToDoItem key={todo.text} text={todo.text} />
+          <ToDoItem key={todo.text} text={todo.text} completed={todo.completed}/>
         ))}
       </ToDoList>
       <CreateToDoButton />
