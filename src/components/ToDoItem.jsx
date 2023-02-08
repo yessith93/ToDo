@@ -14,7 +14,7 @@ const ToDoItem = (props) => {
             }
             return todo
         })
-        props.setTodos(toDosActualizado)
+        props.saveTodos(toDosActualizado)
     }
     //una forma de eliminar 
     /*const findIndex = (text) => {
@@ -23,13 +23,13 @@ const ToDoItem = (props) => {
     const tarea_eliminada = ()=>{
         const newTodos = [...props.todos]
         newTodos.splice(findIndex(props.text), 1)
-        props.setTodos(newTodos)
+        saveTodos(newTodos)
         console.log(`eliminaste la tarea ${props.text}`)
     }*/
     //otra forma de eliminar todos 
     const tarea_eliminada = () =>{
         const newTodos = props.todos.filter(todo=>todo.text !== props.text)
-        props.setTodos(newTodos)
+        props.saveTodos(newTodos)    
         console.log(`eliminaste la tarea ${props.text}`)
       }
     //vista 
