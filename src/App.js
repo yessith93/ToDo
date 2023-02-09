@@ -13,7 +13,7 @@ import './styles/todocounter.css';
 // ];
 function useLocalStorage(itemName, initialValue) {
   // busca los datos en localStorage con el nombre del itemName
-  const localStorageItem = localStorage.getItem(itemName);
+  /*const localStorageItem = localStorage.getItem(itemName);
   let parsedItem;
     // si no existen los declara 
   // else los asigna
@@ -37,13 +37,70 @@ function useLocalStorage(itemName, initialValue) {
   return [
     item,
     saveItem,
-  ];
+  ];*/
+
+  // Creamos el estado inicial para nuestros errores y carga
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [item, setItem] = React.useState(initialValue);
+  React.useEffect(() => {
+    // Simulamos un segundo de delay de carga 
+    setTimeout(() => {
+      // Manejamos la tarea dentro de un try/catch por si ocurre algún error
+      try {
+        // busca los datos en localStorage con el nombre del itemName
+        const localStorageItem = localStorage.getItem(itemName);
+        let parsedItem;
+        // si no existen los declara 
+        // else los asigna
+        if (!localStorageItem) {
+          localStorage.setItem(itemName, JSON.stringify(initialValue));
+          parsedItem = initialValue;
+        } else {
+          parsedItem = JSON.parse(localStorageItem);
+        }
+
+        setItem(parsedItem);
+      } catch(error) {
+      // En caso de un error lo guardamos en el estado
+        setError(error);
+      } finally {
+        // También podemos utilizar la última parte del try/cath (finally) para terminar la carga
+        setLoading(false);
+      }
+    }, 1000);
+  });
+  const saveItem = (newItem) => {
+    // Manejamos la tarea dentro de un try/catch por si ocurre algún error
+    try {
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName, stringifiedItem);
+      setItem(newItem);
+    } catch(error) {
+      // En caso de algún error lo guardamos en el estado
+      setError(error);
+    }
+  }
+  // Para tener un mejor control de los datos retornados, podemos regresarlos dentro de un objeto
+  return {
+    item,
+    saveItem,
+    loading,
+    error,
+  };
 }
 
+
 function App(props) {
-  
+  // se destrcutura el valores del objecto
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []);
   // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  //const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
 
   const [valueSearch,setValueSearch] = React.useState('');
 
@@ -74,7 +131,15 @@ function App(props) {
         setValueSearch={setValueSearch}
       />
       <ToDoList>
-        {searchedTodos.map((todo) => (
+        {/* si hay error */}
+      {error && <p>Failed to load</p>}
+      {/* si esta cargando */}
+      {loading && <p>Loading...</p>}
+      {/* si no esta cargando y no hay todos  */}
+      {(!loading && !searchedTodos.length) && <p>Create a TODO!</p>}
+      {/* si no esta cargando y no hay error carga los todos  */}
+      {(!loading && !error) &&
+        searchedTodos.map((todo) => (
           <ToDoItem 
             key={todo.text} 
             text={todo.text} 
