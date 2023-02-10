@@ -1,7 +1,9 @@
 import React from "react";
+import { TodoContext } from "../context";
 
-const ToDoSearch = ({valueSearch,setValueSearch}) => {
-    
+const ToDoSearch = () => {
+    // se traen los datos del contexto
+    const {valueSearch,setValueSearch} = React.useContext(TodoContext)
     const value_change = event => {
         setValueSearch(event.target.value)
         console.log(event.target.value)
