@@ -20,7 +20,6 @@ function TodoProvider(props) {
 
   // Creamos una nueva variable en donde guardaremos las coincidencias con la búsqueda
   let searchedTodos = [];
-
   // Lógica para filtrar
   if (!valueSearch.length >= 1) {
     searchedTodos = todos;
@@ -31,6 +30,8 @@ function TodoProvider(props) {
       return todoText.includes(searchText);
     });
   }
+  //modal 
+  const [openModal, setOpenModal] = React.useState(false);
 
   return (
     <TodoContext.Provider
@@ -43,6 +44,8 @@ function TodoProvider(props) {
         setValueSearch,
         completedTodos,
         totalTodos,
+        openModal,
+        setOpenModal
       }}
     >
       {props.children}
