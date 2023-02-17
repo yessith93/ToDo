@@ -5,13 +5,13 @@ const TodoContext = React.createContext();
 
 function TodoProvider(props) {
   // se destrcutura el valores del objecto
+  // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)
   const {
     item: todos,
     saveItem: saveTodos,
     loading,
     error,
   } = useLocalStorage("TODOS_V1", []);
-  // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)
   //const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
   const [valueSearch, setValueSearch] = React.useState("");
 
@@ -32,7 +32,15 @@ function TodoProvider(props) {
   }
   //modal 
   const [openModal, setOpenModal] = React.useState(false);
-
+  // Función para añadir un nuevo TODO
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      completed: false,
+      text,
+    });
+    saveTodos(newTodos);
+  };
   return (
     <TodoContext.Provider
       value={{
@@ -44,6 +52,7 @@ function TodoProvider(props) {
         setValueSearch,
         completedTodos,
         totalTodos,
+        addTodo,
         openModal,
         setOpenModal
       }}

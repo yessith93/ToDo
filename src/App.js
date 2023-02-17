@@ -7,6 +7,12 @@ import ToDoItem from "./components/ToDoItem";
 import { TodoContext } from "./context";
 import "./styles/todocounter.css";
 import { Modal } from "./components/modal";
+import Todoform from "./components/Todoform";
+import EmptyTodos from "./components/EmptyTodos";
+import  TodosError  from "./components/TodosError";
+import TodosLoading from "./components/TodosLoading";
+
+
 
 function App() {
   const { error, loading, searchedTodos, openModal } =
@@ -18,11 +24,11 @@ function App() {
       <ToDoSearch />
       <ToDoList>
         {/* si hay error */}
-        {error && <p>Failed to load</p>}
+        {error && <TodosError error={error}/>}
         {/* si esta cargando */}
-        {loading && <p>Loading...</p>}
+        {loading && <TodosLoading/>}
         {/* si no esta cargando y no hay todos  */}
-        {!loading && !searchedTodos.length && <p>Create a TODO!</p>}
+        {!loading && !searchedTodos.length && <EmptyTodos/>}
         {/* si no esta cargando y no hay error carga los todos  */}
         {!loading &&
           !error &&
@@ -36,7 +42,7 @@ function App() {
       </ToDoList>
       {!!openModal && (
         <Modal>
-          <p>aqui crearas tu modal</p>
+          <Todoform/>
         </Modal>
       )}
       <CreateToDoButton />

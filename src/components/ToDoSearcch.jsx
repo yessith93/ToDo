@@ -6,7 +6,6 @@ const ToDoSearch = () => {
     const {valueSearch,setValueSearch} = React.useContext(TodoContext)
     const value_change = event => {
         setValueSearch(event.target.value)
-        console.log(event.target.value)
     }
 
   return (
