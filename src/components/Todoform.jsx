@@ -1,17 +1,14 @@
 import React from "react";
-import { TodoContext } from "../context";
 import '../styles/toDoform.css';
 
-function Todoform(props) {
+function Todoform({
+  addTodo,
+  setOpenModal,
+}) {
 
     // Creamos un estado para nuestro nuevo TODO
   const [newTodoValue, setNewTodoValue] = React.useState('');
-  // se sacan los valores necesarios del contexto 
-  const {
-    addTodo,
-    setOpenModal,
-  } = React.useContext(TodoContext);
-
+ 
   // con esta funcion se captura el valor del text area 
   const onChange = (event) => {
     setNewTodoValue(event.target.value);
@@ -40,7 +37,7 @@ function Todoform(props) {
       <textarea
         value={newTodoValue}
         onChange={onChange}
-        placeholder="Cortar la cebolla para el almuerzo"
+        placeholder="añade tu tarea"
       />
       <div className="TodoForm-buttonContainer">
         <button

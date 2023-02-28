@@ -1,9 +1,7 @@
  import React from "react";
-import { TodoContext } from "../context";
 
- function ToDoCounter(){
+ function ToDoCounter({completedTodos,totalTodos}){
     // se traen los datos del contexto
-    const {completedTodos,totalTodos} = React.useContext(TodoContext)
     return(
         <h2 className="TodoCounter">has completado {completedTodos} de {totalTodos} </h2>
     );

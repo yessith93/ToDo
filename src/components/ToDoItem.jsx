@@ -1,14 +1,11 @@
 import React from "react";
-import { TodoContext } from "../context";
 import { CompleteIcon } from "./TodoIcon/CompleteIcon";
 import { DeleteIcon } from "./TodoIcon/DeleteIcon";
 
 const ToDoItem = (props) => {
   //logica
-  // se traen los datos del contexto
-  const { todos, saveTodos } = React.useContext(TodoContext);
   const tarea_completada = () => {
-    const toDosActualizado = todos.map((todo) => {
+    const toDosActualizado = props.todos.map((todo) => {
       if (todo.text === props.text) {
         todo.completed = !todo.completed;
         if (todo.completed) {
@@ -20,7 +17,7 @@ const ToDoItem = (props) => {
       }
       return todo;
     });
-    saveTodos(toDosActualizado);
+    props.saveTodos(toDosActualizado);
   };
   //una forma de eliminar
   /*const findIndex = (text) => {
@@ -34,8 +31,8 @@ const ToDoItem = (props) => {
     }*/
   //otra forma de eliminar todos
   const tarea_eliminada = () => {
-    const newTodos = todos.filter((todo) => todo.text !== props.text);
-    saveTodos(newTodos);
+    const newTodos = props.todos.filter((todo) => todo.text !== props.text);
+    props.saveTodos(newTodos);
     console.log(`eliminaste la tarea ${props.text}`);
   };
   //vista
