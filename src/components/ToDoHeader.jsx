@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
 
-export default function ToDoHeader({children}) {
+export default function ToDoHeader({ children, loading }) {
   return (
-    <header>{children}</header>
-  )
+    <header>
+      {React.Children.toArray(children).map((child) =>
+        React.cloneElement(child, { loading })
+      )}
+    </header>
+  );
 }

@@ -16,8 +16,14 @@ body {
   text-align: center;
   margin: 0;
   padding: 48px;
+  transition: 1s;
+}
+.TodoSearch.loading,
+.TodoCounter.loading{
+  opacity: 25%;
 }
 .TodoSearch {
+  transition: 1s;
   background: #f9fbfc;
   border-radius: 2px;
   border: 2px solid #202329;
