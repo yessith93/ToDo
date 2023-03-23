@@ -2,6 +2,7 @@ import React from "react";
 import CreateToDoButton from "./components/CreateToDoButton";
 import EmptyTodos from "./components/EmptyTodos";
 import { Modal } from "./components/modal";
+import ToDoChangeAlert from "./components/ToDoChangeAlert";
 import ToDoCounter from "./components/ToDocounter";
 import Todoform from "./components/Todoform";
 import ToDoHeader from "./components/ToDoHeader";
@@ -19,6 +20,7 @@ function App() {
     saveItem: saveTodos,
     loading,
     error,
+    sincronize,
   } = useLocalStorage("TODOS_V1", []);
   //----------------counter
   const completedTodos = todos.filter((todo) => todo.completed).length;
@@ -95,6 +97,7 @@ function App() {
         </Modal>
       )}
       <CreateToDoButton setOpenModal={setOpenModal} />
+      <ToDoChangeAlert sincronize={sincronize} />
     </React.Fragment>
   );
 }
