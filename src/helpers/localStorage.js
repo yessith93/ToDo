@@ -63,7 +63,7 @@ function useLocalStorage(itemName, initialValue) {
         setLoading(false);
         setSincronizedItem(true);
       }
-    }, 1500);
+    }, 500);
   }, [sincronizedItem]);
   const sincronize = () => {
     setLoading(true);
@@ -85,6 +85,7 @@ function useLocalStorage(itemName, initialValue) {
     item,
     saveItem,
     loading,
+    setLoading,
     error,
     sincronize,
   };

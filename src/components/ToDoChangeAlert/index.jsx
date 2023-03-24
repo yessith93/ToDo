@@ -1,9 +1,10 @@
 import "./ChangeAlert.css";
 import UseListenerStorage from "./UseListenerStorage";
 
-function ToDoChangeAlert({ sincronize }) {
+function ToDoChangeAlert({ sincronize, setLoading }) {
   const { show, toggleShow } = UseListenerStorage(sincronize);
   if (show) {
+    setLoading(true);
     return (
       <div className="ChangeAlert-bg">
         <div className="ChangeAlert-container">

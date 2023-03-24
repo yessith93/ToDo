@@ -19,6 +19,7 @@ function App() {
     item: todos,
     saveItem: saveTodos,
     loading,
+    setLoading,
     error,
     sincronize,
   } = useLocalStorage("TODOS_V1", []);
@@ -97,7 +98,7 @@ function App() {
         </Modal>
       )}
       <CreateToDoButton setOpenModal={setOpenModal} />
-      <ToDoChangeAlert sincronize={sincronize} />
+      <ToDoChangeAlert sincronize={sincronize} setLoading={setLoading} />
     </React.Fragment>
   );
 }
