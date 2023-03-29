@@ -4,7 +4,7 @@ function ToDoCounter({ completedTodos, totalTodos, loading }) {
   // se traen los datos del contexto
   return (
     <h2 className={`TodoCounter ${!!loading && "loading"}`}>
-      has completado {completedTodos} de {totalTodos}{" "}
+      has completado {completedTodos} de {totalTodos} tareas
     </h2>
   );
 }

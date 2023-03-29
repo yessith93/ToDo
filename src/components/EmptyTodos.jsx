@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 function EmptyTodos(props) {
-    return (
-        <p>
-          ¡Crea tu primer ToDo!  
-        </p>
-    );
+  return <p>¡Crea tu primera tarea!</p>;
 }
 
-export default EmptyTodos;  
+export default EmptyTodos;

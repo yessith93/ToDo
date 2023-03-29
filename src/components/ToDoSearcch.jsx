@@ -10,7 +10,7 @@ const ToDoSearch = ({ valueSearch, setValueSearch, loading }) => {
     <input
       className={`TodoSearch ${!!loading && "loading"}`}
       onChange={value_change}
-      placeholder="que tienes que hacer"
+      placeholder="quieres buscar algo?"
       value={valueSearch}
       disabled={loading}
     />
