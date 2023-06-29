@@ -33,7 +33,7 @@ const ToDoItem = (props) => {
   const tarea_eliminada = () => {
     const newTodos = props.todos.filter((todo) => todo.text !== props.text);
     props.saveTodos(newTodos);
-    console.log(`eliminaste la tarea ${props.text}`);
+    // console.log(`eliminaste la tarea ${props.text}`);
   };
   //vista
   return (
@@ -41,10 +41,10 @@ const ToDoItem = (props) => {
       <CompleteIcon completed={props.completed} onComplete={tarea_completada} />
       <p className={`TodoItem-p ${props.completed && "TodoItem-p--complete"}`}>
         {props.text}
+        <br />
+        <span>{props.category}</span>
       </p>
-      <DeleteIcon
-        onDelete={tarea_eliminada}
-      />
+      <DeleteIcon onDelete={tarea_eliminada} />
     </li>
   );
 };

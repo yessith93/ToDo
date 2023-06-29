@@ -7,13 +7,17 @@ const ToDoSearch = ({ valueSearch, setValueSearch, loading }) => {
   };
 
   return (
-    <input
-      className={`TodoSearch ${!!loading && "loading"}`}
-      onChange={value_change}
-      placeholder="quieres buscar algo?"
-      value={valueSearch}
-      disabled={loading}
-    />
+    <div className="containerSearch">
+      <label htmlFor="search">Buscar: </label>
+      <input
+        className={`TodoSearch ${!!loading && "loading"}`}
+        onChange={value_change}
+        placeholder="quieres buscar algo?"
+        value={valueSearch}
+        disabled={loading}
+        name="search"
+      />
+    </div>
   );
 };
 

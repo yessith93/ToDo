@@ -22,12 +22,17 @@ body {
 .TodoCounter.loading{
   opacity: 25%;
 }
+.containerSearch{
+    display: flex;
+    gap: 5%;
+    width: 80%;
+    margin: 0 auto;
+}
 .TodoSearch {
   transition: 1s;
   background: #f9fbfc;
   border-radius: 2px;
   border: 2px solid #202329;
-  margin: 0 24px;
   height: 64px;
   width: calc(100% - 62px);
   font-size: 24px;
@@ -69,6 +74,13 @@ ul {
   line-height: 24px;
   font-weight: 400;
 }
+.TodoItem-p span{
+    color: #A5A5A5;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: 10px;
+}
 .TodoItem-p--complete {
   text-decoration: line-through;
 }
@@ -97,4 +109,13 @@ ul {
 
 .CreateTodoButton:hover {
   transform: rotate(224deg);
+}
+.categories{
+  display: flex;
+    gap: 35px;
+    justify-content: center;
+    margin-block: 10px;
+}
+.categories label{
+  margin: 0;
 }
