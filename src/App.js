@@ -2,6 +2,7 @@ import React from "react";
 import CreateToDoButton from "./components/CreateToDoButton";
 import EmptyTodos from "./components/EmptyTodos";
 import { Modal } from "./components/modal";
+import ToDoCategory from "./components/ToDoCategory";
 import ToDoChangeAlert from "./components/ToDoChangeAlert";
 import ToDoCounter from "./components/ToDocounter";
 import Todoform from "./components/Todoform";
@@ -29,6 +30,7 @@ function App() {
 
   //----------------search
   const [valueSearch, setValueSearch] = React.useState("");
+
   // Creamos una nueva variable en donde guardaremos las coincidencias con la búsqueda
   let searchedTodos = [];
 
@@ -41,15 +43,28 @@ function App() {
       return todoText.includes(searchText);
     });
   }
+  //-------------category
+
+  const [categorySearch, setcategorySearch] = React.useState("");
+  const changeCategory = function (event) {
+    setcategorySearch(event.target.value);
+  };
+  if (categorySearch.length > 1) {
+    searchedTodos = searchedTodos.filter((todo) => {
+      const todoText = todo.category.toLowerCase();
+      return todoText.includes(categorySearch);
+    });
+  }
   //----------------modal
   //modal
   const [openModal, setOpenModal] = React.useState(false);
   // Función para añadir un nuevo TODO
-  const addTodo = (text) => {
+  const addTodo = (text, category) => {
     const newTodos = [...todos];
     newTodos.push({
       completed: false,
       text,
+      category,
     });
     saveTodos(newTodos);
   };
@@ -57,6 +72,7 @@ function App() {
     <React.Fragment>
       <ToDoHeader loading={loading}>
         <ToDoCounter completedTodos={completedTodos} totalTodos={totalTodos} />
+        <ToDoCategory todos={searchedTodos} changeCategory={changeCategory} />
         <ToDoSearch setValueSearch={setValueSearch} valueSearch={valueSearch} />
       </ToDoHeader>
       <ToDoList
@@ -75,6 +91,7 @@ function App() {
           <ToDoItem
             key={todo.text}
             text={todo.text}
+            category={todo.category}
             completed={todo.completed}
             todos={todos}
             saveTodos={saveTodos}
@@ -86,6 +103,7 @@ function App() {
           <ToDoItem
             key={todo.text}
             text={todo.text}
+            category={todo.category}
             completed={todo.completed}
             todos={todos}
             saveTodos={saveTodos}
